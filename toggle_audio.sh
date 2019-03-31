@@ -10,13 +10,13 @@ if [[ $(pacmd list | grep 'active profile' | grep hdmi) ]]; then
   if [[ $(pacmd list-sinks | grep headphones | grep 'available: yes') ]]; then
     port="analog-output-headphones"
     pacmd set-sink-port $speaker_sink_name $port
-    echo "headphones available"
+    notify-send "headphones used"
   else
     port="analog-output-speaker"
     pacmd set-sink-port $speaker_sink_name $port
-    echo "headphones unavailable"
+    notify-send "laptop speakers used"
   fi
 else
   pacmd set-card-profile 0 $hdmi
-  echo "set to $hdmi"
+  notify-send "set to $hdmi"
 fi
